@@ -1,0 +1,91 @@
+﻿/*!
+ * TRY - Retina Ready Theme
+ *
+ * Copyright 2013 
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Created by: Carlos Alvarez
+ * URL: http://www.basicoh.com
+ * Designed and built based on Twitter Bootstrap.
+ */
+
+
+/* COLOR CONFIGURATION 
+*
+* Violet Color
+* Name: Amethyst
+* Hex: #9b59b6
+* RGB: rgb(155, 89, 182)
+*
+*
+* PLEASE NOTE: The theme uses the HEX variable.
+*/
+
+a{color:#9b59b6}
+a:hover{color:#9b59b6}
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+  color: #9b59b6;
+}
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  background-color: #9b59b6;
+}
+.navbar-inverse .navbar-link:hover,
+.navbar-inverse .navbar-link:focus {
+  color: #9b59b6;
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: #9b59b6;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: #9b59b6;
+    background-repeat: repeat-x;
+	background-image: linear-gradient(to bottom, #9b59b6, #9b59b6);
+}
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #9b59b6;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: #9b59b6;
+	background-image: linear-gradient(to bottom, #9b59b6, #9b59b6);
+}
+
+.button-full a {
+	background-color:#9b59b6;
+}
+
+.button-transparent a {
+	border-color:#9b59b6;
+}
+.button-transparent a:hover {
+	background-color:#9b59b6;
+}
+.button-quote a:hover {
+	color: #9b59b6;
+	}
+#quote {
+	background-color:#9b59b6;
+}
+#herowrap {
+	background-color:#9b59b6;
+}
+.desc:hover {
+	background-color:#9b59b6;
+}
+.title-bg {
+	border-top:#9b59b6;
+}
+input[type=submit] {
+	background: #9b59b6;
+}

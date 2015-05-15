@@ -1,0 +1,91 @@
+﻿/*!
+ * TRY - Retina Ready Theme
+ *
+ * Copyright 2013 
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Created by: Carlos Alvarez
+ * URL: http://www.basicoh.com
+ * Designed and built based on Twitter Bootstrap.
+ */
+
+
+/* COLOR CONFIGURATION 
+*
+* Orange Color
+* Name: Orange
+* Hex: #f39c12
+* RGB: rgb(243, 156, 18)
+*
+*
+* PLEASE NOTE: The theme uses the HEX variable.
+*/
+
+a{color:#f39c12}
+a:hover{color:#f39c12}
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+  color: #f39c12;
+}
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  background-color: #f39c12;
+}
+.navbar-inverse .navbar-link:hover,
+.navbar-inverse .navbar-link:focus {
+  color: #f39c12;
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: #f39c12;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: #f39c12;
+    background-repeat: repeat-x;
+	background-image: linear-gradient(to bottom, #f39c12, #f39c12);
+}
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #f39c12;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: #f39c12;
+	background-image: linear-gradient(to bottom, #f39c12, #f39c12);
+}
+
+.button-full a {
+	background-color:#f39c12;
+}
+
+.button-transparent a {
+	border-color:#f39c12;
+}
+.button-transparent a:hover {
+	background-color:#f39c12;
+}
+.button-quote a:hover {
+	color: #f39c12;
+	}
+#quote {
+	background-color:#f39c12;
+}
+#herowrap {
+	background-color:#f39c12;
+}
+.desc:hover {
+	background-color:#f39c12;
+}
+.title-bg {
+	border-top:#f39c12;
+}
+input[type=submit] {
+	background: #f39c12;
+}

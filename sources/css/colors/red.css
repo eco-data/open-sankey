@@ -1,0 +1,91 @@
+/*!
+ * TRY - Retina Ready Theme
+ *
+ * Copyright 2013 
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Created by: Carlos Alvarez
+ * URL: http://www.basicoh.com
+ * Designed and built based on Twitter Bootstrap.
+ */
+
+
+/* COLOR CONFIGURATION 
+*
+* Red Color
+* Name: Pomegranate
+* Hex: #c0392b
+* RGB: rgb(192, 57, 43)
+*
+*
+* PLEASE NOTE: The theme uses the HEX variable.
+*/
+
+a{color:#c0392b}
+a:hover{color:#c0392b}
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+  color: #c0392b;
+}
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  background-color: #c0392b;
+}
+.navbar-inverse .navbar-link:hover,
+.navbar-inverse .navbar-link:focus {
+  color: #c0392b;
+}
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: #c0392b;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: #c0392b;
+    background-repeat: repeat-x;
+	background-image: linear-gradient(to bottom, #c0392b, #c0392b);
+}
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #c0392b;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: #c0392b;
+	background-image: linear-gradient(to bottom, #c0392b, #c0392b);
+}
+
+.button-full a {
+	background-color:#c0392b;
+}
+
+.button-transparent a, .button-transparent_2 a {
+	border-color:#c0392b;
+}
+.button-transparent a:hover, , .button-transparent_2 a:hover {
+	background-color:#c0392b;
+}
+.button-quote a:hover {
+	color: #c0392b;
+	}
+#quote {
+	background-color:#c0392b;
+}
+#herowrap {
+	background-color:#c0392b;
+}
+.desc:hover {
+	background-color:#c0392b;
+}
+.title-bg {
+	border-top:#c0392b;
+}
+input[type=submit] {
+	background: #c0392b;
+}

@@ -1,0 +1,195 @@
+nodes
+
+color = #05ab3d
+id = 0
+name = Pommes
+orientation = vertical
+x = 650
+y = 140
+input_links = 1,0
+output_links = 5,4
+input_offsets = 0,10,40
+output_offsets = 0,20,40
+total_input_offset = 40
+total_output_offset = 40
+merged_name = Fruits
+
+color = orange
+id = 1
+name = Poires
+orientation = vertical
+x = 634
+y = 294.44444444444446
+input_links = 3,2
+output_links = 6
+input_offsets = 0,10,25
+output_offsets = 0,25
+total_input_offset = 25
+total_output_offset = 25
+merged_name = Fruits
+
+color = grey
+id = 2
+name = Production<br>de pommes
+orientation = vertical
+x = 379
+y = 162
+x_label = -59
+y_label = 29
+input_links = 
+output_links = 0
+input_offsets = 0
+output_offsets = 0,30
+total_input_offset = 0
+total_output_offset = 30
+merged_name = Production<br>de fruits
+
+color = grey
+id = 3
+name = Production<br>de poires
+orientation = vertical
+x = 381
+y = 317.66666666666674
+x_label = -53
+y_label = 13
+input_links = 
+output_links = 2
+input_offsets = 0
+output_offsets = 0,15
+total_input_offset = 0
+total_output_offset = 15
+merged_name = Production<br>de fruits
+
+color = grey
+id = 4
+name = Importations<br>de pommes
+orientation = horizontal
+x = 597.7777777777778
+y = 36
+x_label = -1
+y_label = -13
+input_links = 
+output_links = 1
+input_offsets = 0
+output_offsets = 0,10
+total_input_offset = 0
+total_output_offset = 10
+merged_name = Importations<br>de fruits
+
+color = grey
+id = 5
+name = Importations<br>de poires
+orientation = horizontal
+x = 545.5555555555557
+y = 35
+x_label = -41
+y_label = -14
+input_links = 
+output_links = 3
+input_offsets = 0
+output_offsets = 0,10
+total_input_offset = 0
+total_output_offset = 10
+merged_name = Importations<br>de fruits
+
+color = grey
+id = 6
+name = Exportations<br>de pommes
+orientation = horizontal
+x = 678
+y = 403
+x_label = 0
+y_label = 21
+input_links = 4
+output_links = 
+input_offsets = 0,20
+output_offsets = 0
+total_input_offset = 20
+total_output_offset = 0
+merged_name = Production<br>de fruits
+
+color = grey
+id = 7
+name = Consommation
+orientation = vertical
+x = 931
+y = 140
+x_label = 10
+y_label = 53
+input_links = 5,6
+output_links = 
+input_offsets = 0,20,45
+output_offsets = 0
+total_input_offset = 45
+total_output_offset = 0
+merged_name = Production<br>de fruits
+
+links
+
+color = #05ab3d
+id = 0
+source = 2
+target = 0
+source_name = Production<br>de pommes
+target_name = Pommes
+value = 30
+x_center = 0.5
+
+color = #05ab3d
+id = 1
+source = 4
+target = 0
+source_name = Importations<br>de pommes
+target_name = Pommes
+value = 10
+
+color = orange
+id = 2
+source = 3
+target = 1
+source_name = Production<br>de poires
+target_name = Poires
+value = 15
+x_center = 0.5
+
+color = orange
+id = 3
+source = 5
+target = 1
+source_name = Importations<br>de poires
+target_name = Poires
+value = 10
+
+color = #05ab3d
+id = 4
+source = 0
+target = 6
+source_name = Pommes
+target_name = Exportations<br>de pommes
+value = 20
+
+color = #05ab3d
+id = 5
+source = 0
+target = 7
+source_name = Pommes
+target_name = Consommation
+value = 20
+x_center = 0.5
+
+color = orange
+id = 6
+source = 1
+target = 7
+source_name = Poires
+target_name = Consommation
+value = 25
+x_center = 0.5
+
+filtered_nodes
+
+filtered_links
+
+scale = 45
+current_filter = 0
+max_filter = 30
