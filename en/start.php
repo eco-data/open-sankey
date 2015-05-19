@@ -34,7 +34,8 @@
 <div class="container">	
 <a href="<?php echo $to_main_dir.'sources/php_sankey/manual_sankey.php' ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Draw a new diagram manually</a>
 	<br><hr>
-	OR&nbsp;&nbsp;&nbsp;&nbsp;Load a previously saved diagram:
+	OR&nbsp;&nbsp;&nbsp;&nbsp;Load a previously saved diagram:<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#modal_load" role="button" class="btn" data-toggle="modal">Display the example and download associated files.</a><br><br>
 	<form action="<?php echo $to_main_dir.'sources/php_sankey/upload_diagram.php' ?>" method="post" enctype="multipart/form-data">
 		<div class="span2">Diagram <input type="file" name="diagram_file"></div>
 		<div class="span2">Supply uncertainties <input type="file" name="uncertainties_file_supply" ></div>
@@ -47,7 +48,7 @@
 	<hr>
 	<div>
 		OR&nbsp;&nbsp;&nbsp;&nbsp;Load the supply and use tables corresponding to the diagram in order to obtain a first representation automatically.<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myModal" role="button" class="btn" data-toggle="modal">Display the example and download associated files.</a><br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#modal_auto" role="button" class="btn" data-toggle="modal">Display the example and download associated files.</a><br><br>
 		<div class="row">
 		<form action="<?php echo $to_main_dir.'sources/php_sankey/upload_supply_and_use_tables.php' ?>" method="post" enctype="multipart/form-data">
 			<div class="span2">Supply <input type="file" name="supply_file"></div>
@@ -76,7 +77,29 @@
 </script>
 
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modal_load" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Load diagram and add uncertainties</h3>
+  </div>
+  <div class="modal-body">
+  	<p><b>Adding uncertainties is optionnal.</b></p>
+  	<p>Download the sample txt <b>Saved diagram</b> file: <a href="<?php echo  $to_main_dir.'sources/'?>examples/pommes_poires.txt">saved diagram</a></p>
+    <p>Download the sample csv <b>Supply</b> uncertainties file: <a href="<?php echo  $to_main_dir.'sources/'?>examples/supply_uncert_semicolon.csv">semicolon separator</a> OR <a href="<?php echo  $to_main_dir.'sources/'?>examples/supply_uncert.csv">comma separator</a>.</p>
+    <p>Download the sample csv <b>Use</b> uncertainties file: <a href="<?php echo  $to_main_dir.'sources/'?>examples/use_uncert_semicolon.csv">semicolon separator</a> OR <a href="<?php echo  $to_main_dir.'sources/'?>examples/use_uncert.csv">comma separator</a>.</p>
+    <p>The result is the following:
+    	<img src="<?php echo  $to_main_dir.'sources/'?>examples/pommes_poires_uncert.png"></img> 
+    </p>
+    <p>Note that the +/- interval of confidence is two times the number indicated in the csv file (this corresponds to the common situation of a gaussian diastribution where the 95% confidence interval is 2-sigma wide).
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal_auto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Automatic Sankey diagrams</h3>

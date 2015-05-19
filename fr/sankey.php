@@ -122,7 +122,8 @@ if ($_SESSION["sankey_type"] != "manual_sankey") {
 
 <script src="<?php echo $to_main_dir; ?>sources/js_sankey/clone.js" type="text/javascript"></script>
 <script>var to_main_dir = '<?php echo $to_main_dir ?>';</script>
-<script src="<?php echo $to_main_dir; ?>sources/js_sankey/manual_sankey.js" type="text/javascript"></script>
+<script src="<?php 
+	if (strpos($_SERVER['HTTP_USER_AGENT'],'Chrome')!==false) {echo $to_main_dir . 'sources/js_sankey/manual_sankey_chrome.js';} else {echo $to_main_dir . 'sources/js_sankey/manual_sankey.js';} ?>" type="text/javascript"></script>
 
 <?php
 
@@ -179,6 +180,14 @@ print_footer();
     	<img src="<?php echo $to_main_dir . 'sources/examples/links_center.png' ?>"></img></li>
     	<li><b>Sauvegarder votre travail.</b> Cliquez sur le bouton "Sauvegarder le diagramme" et entrez un titre pour télécharger les informations relatives à votre diagramme. Conservez ce fichier et chargez-le à votre prochaine visite sur la page de l'outil Sankey via l'interface "Charger un diagramme précédemment sauvegardé".</li>
     </ul>
+    <p>Un <b>flux de recyclage</b> est un lien entre deux noeuds verticaux, lorsque le noeud cible se situe avant le noeud source. La transformation en flux de recyclage se fait automatiquement dès que cette condition est satisfaite comme illustré par la figure ci-dessous :
+    	<img src="<?php echo $to_main_dir . 'sources/examples/normal_to_recycling.png' ?>"></img>
+    </p>
+    <p>En utilisant les 3 poignées disponibles, il est possible de modifier la forme du flux de recyclage (les distances qui changeront sont affichées en bleu) :
+    	<img src="<?php echo $to_main_dir . 'sources/examples/vert_handle.png' ?>"></img>
+    	<img src="<?php echo $to_main_dir . 'sources/examples/left_horiz_handle.png' ?>"></img>
+    	<img src="<?php echo $to_main_dir . 'sources/examples/right_horiz_handle.png' ?>"></img>
+    </p>
     <p><b>Merci de citer le nom "Open Sankey" si vous utilisez l'outil dans une publication !</b></p>	
   </div>
   <div class="modal-footer">

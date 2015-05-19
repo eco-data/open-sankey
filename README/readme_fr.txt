@@ -1,5 +1,5 @@
 ***
-OPEN SANKEY v1.
+OPEN SANKEY v1.1
 05/2015
 Initié par eco-data.fr
 Le projet est ouvert à toute contribution via github.

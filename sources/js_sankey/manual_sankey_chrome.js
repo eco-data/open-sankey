@@ -1,3 +1,5 @@
+// CHROME DOES NOT IMPLEMENT javascript 1.7 yet : manual_sankey.js uses the [a,b] = [1,2] destructuration feature.
+
 // SIZES AND CURVATURES
 var width = 1300,
     height = 700,
@@ -501,25 +503,42 @@ function drawCurve(d) {
 		 		return sd_text;
 		 	});	
 
-    	
-    	[x0,y0] = [xs,ys];
-		[x17,y17] = [xt,yt];
-		[x1,y1] = [x0 + default_horiz_shift + d.right_horiz_shift, y0];
-		[x16,y16] = [x17 - default_horiz_shift + d.left_horiz_shift, y17];
-		[x8,y8] = [x1, Math.max(y0,y17) + scale(2*d.value) + d.vert_shift];
-		[x2,y2] = [x1 + scale(d.value), y0]; // controle bézier
-		[x3,y3] = [x2,y2]; // controle bézier
-		[x4,y4] = [x2,y2 + scale(d.value)];
-		[x6,y6] = [x8 + scale(d.value), y8]; // controle bézier
-		[x7,y7] = [x6,y6]; // controle bézier
-		[x5,y5] = [x2,y6 - scale(d.value)];
-		[x9,y9] = [x16,y8];
-		[x10,y10] = [x9 - scale(d.value),y9]; // controle bézier
-		[x11,y11] = [x10,y10]; // controle bézier
-		[x12,y12] = [x10,y10 - scale(d.value)];
-		[x14,y14] = [x16 - scale(d.value),y17]; // controle bézier
-		[x15,y15] = [x14,y14]; // controle bézier
-		[x13,y13] = [x12,y14 + scale(d.value)];
+    	x0 = xs;
+    	y0 = ys;
+		x17 = xt;
+		y17 = yt;
+		x1 = x0 + default_horiz_shift + d.right_horiz_shift;
+		y1 = y0;
+		x16 = x17 - default_horiz_shift + d.left_horiz_shift;
+		y16 = y17;
+		x8 = x1;
+		y8 = Math.max(y0,y17) + scale(2*d.value) + d.vert_shift;
+		x2 = x1 + scale(d.value); // controle bézier
+		y2 = y0; // controle bézier
+		x3 = x2; // controle bézier
+		y3 = y2; // controle bézier
+		x4 = x2;
+		y4 = y2 + scale(d.value);
+		x6 = x8 + scale(d.value); // controle bézier
+		y6 = y8; // controle bézier
+		x7 = x6; // controle bézier
+		y7 = y6; // controle bézier
+		x5 = x2;
+		y5 = y6 - scale(d.value);
+		x9 = x16;
+		y9 = y8;
+		x10 = x9 - scale(d.value); // controle bézier
+		y10 = y9; // controle bézier
+		x11 = x10; // controle bézier
+		y11 = y10; // controle bézier
+		x12 = x10;
+		y12 = y10 - scale(d.value);
+		x14 = x16 - scale(d.value); // controle bézier
+		y14 = y17; // controle bézier
+		x15 = x14; // controle bézier
+		y15 = y14; // controle bézier
+		x13 = x12;
+		y13 = y14 + scale(d.value);
 		line1 = 'M ' + x0 + ',' + y0 + ' H ' + x1;
 		bezier1 = ' C ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + ' ' + x4 + ',' + y4;
 		line2 = ' V ' + y5;
@@ -540,8 +559,10 @@ function drawCurve(d) {
 			xs += default_node_size;
 			ys += scale(nodes[d.source].output_offsets[source_order] + d.value/2);	
 			yt += scale(nodes[d.target].input_offsets[target_order] + d.value/2);
-			[x0,y0] = [xs,ys];
-			[x5,y5] = [xt,yt];
+			x0 = xs;
+			y0 = ys;
+			x5 = xt;
+			y5 = yt;
 			if (d.x_center) {
 				var part1 = (x5 - x0) * (d.x_center - 1/6),
 					part3 = (x5 - x0) * (-d.x_center + 5/6);
@@ -595,8 +616,10 @@ function drawCurve(d) {
 		 		})
 		}	
 		else if (source_orientation == "horizontal" && target_orientation == "vertical") {
-			[x0,y0] = [xs,ys];
-			[x5,y5] = [xt,yt];
+			x0 = xs;
+			y0 = ys;
+			x5 = xt;
+			y5 = yt;
 			x0 += scale(nodes[d.source].output_offsets[source_order] + d.value/2);
 			y0 += default_node_size;
 			y5 += scale(nodes[d.target].input_offsets[target_order] + d.value/2);	
@@ -612,8 +635,10 @@ function drawCurve(d) {
 			d3.select("#node" + d.target).attr("height",scale(Math.max(nodes[d.target].total_input_offset,nodes[d.target].total_output_offset)));
 		}
 		else if (source_orientation == "vertical" && target_orientation == "horizontal") {
-			[x0,y0] = [xs,ys];
-			[x5,y5] = [xt,yt];
+			x0 = xs;
+			y0 = ys;
+			x5 = xt;
+			y5 = yt;
 			x0 += default_node_size;
 			y0 += scale(nodes[d.source].output_offsets[source_order] + d.value/2);
 			x5 += scale(nodes[d.target].input_offsets[target_order] + d.value/2);

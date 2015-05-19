@@ -122,7 +122,8 @@ if ($_SESSION["sankey_type"] != "manual_sankey") {
 
 <script src="<?php echo $to_main_dir; ?>sources/js_sankey/clone.js" type="text/javascript"></script>
 <script>var to_main_dir = '<?php echo $to_main_dir ?>';</script>
-<script src="<?php echo $to_main_dir; ?>sources/js_sankey/manual_sankey.js" type="text/javascript"></script>
+<script src="<?php 
+	if (strpos($_SERVER['HTTP_USER_AGENT'],'Chrome')!==false) {echo $to_main_dir . 'sources/js_sankey/manual_sankey_chrome.js';} else {echo $to_main_dir . 'sources/js_sankey/manual_sankey.js';} ?>" type="text/javascript"></script>
 
 <?php
 
@@ -179,6 +180,14 @@ print_footer();
     	<img src="<?php echo $to_main_dir . 'sources/examples/links_center.png' ?>"></img></li>
     	<li><b>Save your work.</b> Click on the "Save diagram" button and enter a title to download all the info associated to your diagram. Keep this file and load it on your next sankey session via the interface "Load a previously saved diagram".</li>
     </ul>
+    <p>A <b>recycling flow</b> is a flow between two vertical nodes, when the target node is located before the source node. The transformation into recycling flow is done automatically as soon as this condition is satisfied as illustrated below:
+    	<img src="<?php echo $to_main_dir . 'sources/examples/normal_to_recycling.png' ?>"></img>
+    </p>
+    <p>Using the 3 available handles, you can modify the shape of a recycling flow (distances that will change are shown in blue):
+    	<img src="<?php echo $to_main_dir . 'sources/examples/vert_handle.png' ?>"></img>
+    	<img src="<?php echo $to_main_dir . 'sources/examples/left_horiz_handle.png' ?>"></img>
+    	<img src="<?php echo $to_main_dir . 'sources/examples/right_horiz_handle.png' ?>"></img>
+    </p>
     <p><b>Thanks for citing the name "Open Sankey" if you use this tool in a paper!</b></p>	
   </div>
   <div class="modal-footer">
