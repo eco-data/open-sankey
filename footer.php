@@ -6,7 +6,7 @@ function print_footer(){
 				<div class='row'>
 					<div class='span4'>
 						<p>
-						<a href='https://github.com/eco-data/open-sankey' style='color:white'>Open Sankey - v1</a>
+						<a href='https://github.com/eco-data/open-sankey' style='color:white'>Open Sankey - v1.1</a>
 						</p>
 					</div>
 				</div>
