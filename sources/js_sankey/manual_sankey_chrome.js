@@ -873,13 +873,31 @@ function update_link(link_index) {
  			target = document.link_info.target.value,
 			value = document.link_info.value.value,
 			color = document.link_info.color.value,
-			id = selected_item.substring(4);
+			id = parseInt(selected_item.substring(4));
 		
-		links[id].source = parseInt(source);
-		links[id].target = parseInt(target);
+		if (parseInt(source) != links[id].source){
+			// Remove link from old source
+			var link_pos = nodes[links[id].source].ouput_links.indexOf(id);
+			nodes[links[id].source].ouput_links.splice(link_pos,1);
+			// Update source
+			links[id].source = parseInt(source);
+			links[id].source_name = nodes[links[id].source].name;
+			// Add link to new source
+			nodes[links[id].source].output_links.push(id);			
+		}
+		if (parseInt(target) != links[id].target){
+			// Remove link from old target
+			var link_pos = nodes[links[id].target].input_links.indexOf(id);
+			nodes[links[id].target].input_links.splice(link_pos,1);
+			// Update target
+			links[id].target = parseInt(target);
+			links[id].target_name = nodes[links[id].target].name;
+			// Add link to new target
+			nodes[links[id].target].input_links.push(id);			
+		}
+		
 		links[id].value = parseFloat(value); 
 		links[id].color = color;
-		
 		recompute_nodes();
 		redraw_nodes_and_links();
 	}
@@ -910,7 +928,7 @@ function delete_node(node_id) {
 	var id,
 		go = false;
 	if (selected_item.substring(0,4) == "node" && node_id == undefined) {
-		id = selected_item.substring(4);
+		id = parseInt(selected_item.substring(4));
 		go = true;
 	}
 	else if (node_id >= 0) {
@@ -918,28 +936,28 @@ function delete_node(node_id) {
 		go = true;
 	}
 	if (go == true) {
+		// delete links originating from / going to the deleted node
+		var i=0;
+		while (i < links.length) {
+			console.log("link"+i);
+			if (links[i].source == id) {
+				console.log(1);
+				delete_link(links[i].id);
+				i -= 1;
+			}
+			else if (links[i].target == id) {
+				console.log(2);
+				delete_link(links[i].id);
+				i -= 1;
+			}
+			i += 1;
+		}
+	 	
+	 	// delete node and shift numerotation
 	 	nodes.splice(id,1);
-	 	d3.select("#gg_node" + id).remove();	
-	 	// shift numerotation
 	 	numerotate_nodes();
-		g_nodes.selectAll("g")
-			.attr("id",function(d,i) {
-	 			d3.select(this).select("rect")
-	 				.attr("id","node" + i)
-					.on("click", function() {
-		      			deselect_nodes_and_links();
-			        	d3.select(this).attr("class","selected_node");
-			        	selected_item = "node" + i;
-			        	document.node_info.color.value = d3.select(this).attr("fill");
-			        	document.node_info.name.value = d3.select("#gg_node" + i + " text").text();
-			        	$('input[value="' + orientation + '"]').prop("checked",true);
-			    		return;
-	     			})
-	     			.select("title")
-	      			.text(i);	
-				return "gg_node" + i;
-			});
-		// shift source and target of links and update links
+	 	
+	 	// shift source and target of links and update links
 		links.forEach(function(link){
 			if (link.source > id) {
 				link.source -= 1;
@@ -948,10 +966,10 @@ function delete_node(node_id) {
 				link.target -= 1;
 			}
 		});	
-		d3.selectAll(".link")
-			.each(function(d,i){
-				update_link(i);
-			});
+	 	
+	 	g_nodes.selectAll(".gg_nodes").remove();
+		add_nodes_auto();
+		redraw_nodes_and_links();
 	}
 }
 
@@ -960,7 +978,7 @@ function delete_link(link_id) {
 	var id,
 		go = false;
 	if (selected_item.substring(0,4) == "link" && link_id == undefined) {
-		id = selected_item.substring(4);
+		id = parseInt(selected_item.substring(4));
 		go = true;
 	}
 	else if (link_id >= 0) {
@@ -969,32 +987,10 @@ function delete_link(link_id) {
 	}
 	if (go == true) {
 		links.splice(id,1);
-		d3.select("#gg_link" + id).remove();
-		// shift numerotation
 		numerotate_links();
-		g_links.selectAll("g")
-			.attr("id",function(d,i) {
-				d3.select(this).select("path")
-					.attr("id",function(d) {
-						return "link" + i;
-					})
-					.on("click", function(d){
-	     				deselect_nodes_and_links();
-				     	d3.select(this).attr("class","selected_link");
-				     	selected_item = "link" + i;
-				     	document.link_info.source.value = d.source;
-				     	document.link_info.target.value = d.target;
-				     	document.link_info.value.value = d.value;
-				     	document.link_info.color.value = d.color;
-				 		return;
-					});
-				d3.select(this).select("text")
-					.attr("id",function(d) {
-						return "link_value" + i;
-					});		
-				return "gg_link" + i;
-			});
-		recompute_nodes(id);    				
+		recompute_nodes(id);
+		g_links.selectAll(".gg_links").remove();
+		add_links();
 	}
 }
 
