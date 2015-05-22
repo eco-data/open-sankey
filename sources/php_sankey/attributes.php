@@ -32,6 +32,9 @@ $attributes_links = array(
 	"x_label" => array(0,0),
 	"y_label" => array(0,0),
 	"x_center" => array(0,0),
+	"left_horiz_shift" => array(0,0),
+	"right_horiz_shift" => array(0,0),
+	"vert_shift" => array(0,0),
 	"x_sd_label" => array(0,0),
 	"y_sd_label" => array(0,0)
 );

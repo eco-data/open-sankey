@@ -12,6 +12,7 @@ if (count($supply_array) == 1) {
 	$supply_array = explode("\r",$supply_array[0]);
 }
 $separator = find_separator($supply_array);
+
 // Memorization in matrix format
 $rS_max = 0;
 foreach($supply_array as $r => $row) {

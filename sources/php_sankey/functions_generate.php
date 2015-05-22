@@ -20,7 +20,7 @@ function find_link($source_name,$target_name){
 }
 
 // FIND SEPARATOR OF CSV ARRAY
-function find_separator($array){
+function find_separator(&$array){
 	$comma = 0;
 	$semi_colon = 0;
 	foreach ($array as $key => &$value) { // reference
