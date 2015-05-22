@@ -62,7 +62,7 @@ function extract_nodes_or_links($txt,$attributes){
 		// Extacting attributes
 		foreach($attributes as $at=>$is_array){
 			$attribute_0 = explode("$at = ",$value);
-			if (count($attributes)>1){
+			if (count($attribute_0)>1){
 				$attribute_1 = explode("\n",$attribute_0[1]);
 				$new_node[$at] = $attribute_1[0];
 			}
