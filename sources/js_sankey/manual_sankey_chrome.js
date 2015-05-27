@@ -1,8 +1,8 @@
 // CHROME DOES NOT IMPLEMENT javascript 1.7 yet : manual_sankey.js uses the [a,b] = [1,2] destructuration feature.
 
 // SIZES AND CURVATURES
-var width = 1300,
-    height = 700,
+var width = 2000,
+    height = 1500,
     default_node_size = 10,
     default_horiz_shift = 50,
     // curvature_1 is applied to vert/vert links, curvature_2 is applied to horiz/vert and vert/horiz links
@@ -1562,22 +1562,20 @@ function move_nodes_forward(){
 
 // New function to reorder nodes (layout issues)
 function order_nodes_links(){
-	nodes_temp = [];
-	for(i=0; i<nodes.length; i++){
-		n = nodes.filter(function(d){
-			return d.id == i;
-		});
-		nodes_temp.push(n[0]);	
-	}
-	nodes = nodes_temp;
-	delete nodes_temp;
-	links_temp = [];
-	for(i=0; i<links.length; i++){
-		l = links.filter(function(d){
-			return d.id == i;
-		});
-		links_temp.push(l[0]);	
-	}
-	links = links_temp;
-	delete links_temp;
+	old_nodes_ids = [];
+	old_links_ids = [];
+	new_nodes_ids = [];
+	new_links_ids = [];
+	nodes.forEach(function(n,i){
+		old_nodes_ids.push(n.id);
+		new_nodes_ids.push(i);
+		n.id = i;
+	});
+	links.forEach(function(l,i){
+		l.source = new_nodes_ids[old_nodes_ids.indexOf(l.source)];
+		l.target = new_nodes_ids[old_nodes_ids.indexOf(l.target)];
+		old_links_ids.push(l.id);
+		new_links_ids.push(i);
+		l.id = i;
+	});
 }
