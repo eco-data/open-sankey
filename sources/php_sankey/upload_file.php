@@ -5,9 +5,13 @@ session_start();
 function copy_uploaded_file($post_name, $destination, $allowedExts, $final_extension, $use_name=0) {
 	$temp = explode(".", $_FILES[$post_name]["name"]);
 	$extension = end($temp);
-	if ((($_FILES[$post_name]["type"] == "text/plain") || ($_FILES[$post_name]["type"] == "text/csv"))
+	echo $_FILES[$post_name]["type"];
+	echo $_FILES[$post_name]["size"];
+	echo $_FILES[$post_name]["error"];
+	if ((($_FILES[$post_name]["type"] == "text/plain") || ($_FILES[$post_name]["type"] == "text/csv") || ($_FILES[$post_name]["type"] == "application/vnd.ms-excel"))
 		&& $_FILES[$post_name]["size"] < 1000000
-		&& in_array($extension, $allowedExts)) {
+//		&& in_array($extension, $allowedExts)
+	) {
 		if ($_FILES[$post_name]["error"] > 0) {
 //	    	echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
 	    }
@@ -23,6 +27,7 @@ function copy_uploaded_file($post_name, $destination, $allowedExts, $final_exten
 				$_SESSION["file_path"] = $destination . "/" . rand(0,pow(10,10)) . $final_extension;
 			}
       		move_uploaded_file($_FILES[$post_name]["tmp_name"],  $_SESSION["file_path"]);
+//	      	echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
 			return true;
 	    }
 	  }

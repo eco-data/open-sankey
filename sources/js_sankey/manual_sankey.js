@@ -1,3 +1,11 @@
+// DATE AND TIME (used for undo/redo)
+var date = new Date();
+var time = date.getTime();
+var undo_nodes = [],
+	redo_nodes = [],
+	undo_links = [],
+	redo_links = [];
+
 // SIZES AND CURVATURES
 var width = 2000,
     height = 1500,
@@ -97,6 +105,14 @@ function add_new_link() {
 var z_order_max = 0;
 
 function add_links() {
+	// undo-redo
+	date = new Date();
+	var new_time = date.getTime();
+	if ((new_time - time)/1000 > 5){
+		update_undo_memory();
+		time = new_time;
+	}
+	
 	var gg_links = g_links.selectAll(".gg_links").data(links).enter().append("g")
 		.attr("id",function(d,i){
 			return "gg_link" + i;
@@ -108,6 +124,7 @@ function add_links() {
 	    });
 		
 	var paths = gg_links.append("path")
+		.attr("fill","none")
 		.attr("class", "link")
 		.attr("id", function(d, i) {
     		return "link" + i;
@@ -139,7 +156,7 @@ function add_links() {
 	 	.attr("id",function(d,i){
  			return "link_value" + i;
  		})
-	 	.attr("style","font:11px 'arial'")
+	 	.attr("style","font-family:Arial; font-size:11px;")
 	 	.call(d3.behavior.drag()
    			.origin(Object).on("drag", function() {
    				if (alt_key_pressed == true) {
@@ -165,7 +182,7 @@ function add_links() {
  				d.y_sd_label = parseFloat(d.y_label + 10);
  			}
  		})
-	 	.attr("style","font:9px 'arial'")
+	 	.attr("style","font-family:Arial; font-size:9px;")
 	 	.call(d3.behavior.drag()
    			.origin(Object).on("drag", function() {
    				if (alt_key_pressed == true) {
@@ -185,6 +202,14 @@ function add_links() {
    
 // DRAG NODES
 function drag_node(dragged) {
+	// undo-redo
+	date = new Date();
+	var new_time = date.getTime();
+	if ((new_time - time)/1000 > 5){
+		update_undo_memory();
+		time = new_time;
+	}
+	
 	var old_x = +d3.select(dragged).attr("x"),
 		old_y = +d3.select(dragged).attr("y"),
 		new_x = old_x + d3.event.dx,
@@ -360,6 +385,14 @@ function identify_node(link_id,mouse_coord) {
 
 // DRAW LINK   
 function drawCurve(d) {
+	// undo-redo
+	date = new Date();
+	var new_time = date.getTime();
+	if ((new_time - time)/1000 > 5){
+		update_undo_memory();
+		time = new_time;
+	}
+	
 	var source_orientation = nodes[d.source].orientation,
 		target_orientation = nodes[d.target].orientation;		
     var xs = +d3.select('#gg_node' + d.source).attr("x"),
@@ -634,15 +667,15 @@ function drawCurve(d) {
 	 		y_pos = y0 * Math.pow(1-t,3) + 3*y2 * t * Math.pow(1-t,2) + 3*y3 * Math.pow(t,2) * (1-t) + y1 * Math.pow(t,3);  
 		d3.select("#link_value" + d.id)
 		 	.attr("x",function(d){
-//		 		if (d.x_label) {
-//		 			return d.x_label;
-//		 		}
+		 		if (d.x_label) {
+		 			return d.x_label;
+		 		}
 		 		return x_pos;
 		 	})
 		 	.attr("y",function(d){
-//		 		if (d.y_label) {
-//		 			return d.y_label;
-//		 		}
+		 		if (d.y_label) {
+		 			return d.y_label;
+		 		}
 		 		return y_pos;
 		 	})
 		 	.text(function(d){
@@ -651,21 +684,21 @@ function drawCurve(d) {
 		 // write text (sd_value) below the link value
 		 d3.select("#link_sd_value" + d.id)
 		 	.attr("x",function(d){
-//		 		if (d.x_sd_label) {
-//		 			return d.x_sd_label;
-//		 		}
-//		 		else if (d.x_label) {
-//		 			return d.x_label;
-//		 		}
+		 		if (d.x_sd_label) {
+		 			return d.x_sd_label;
+		 		}
+		 		else if (d.x_label) {
+		 			return d.x_label;
+		 		}
 		 		return x_pos;
 		 	})
 		 	.attr("y",function(d){
-//		 		if (d.y_sd_label) {
-//		 			return d.y_sd_label;
-//		 		}
-//		 		else if (d.y_label) {
-//		 			return parseFloat(d.y_label + 10);
-//		 		}
+		 		if (d.y_sd_label) {
+		 			return d.y_sd_label;
+		 		}
+		 		else if (d.y_label) {
+		 			return parseFloat(d.y_label + 10);
+		 		}
 		 		return parseFloat(y_pos + 10);
 		 	})
 		 	.text(function(d){
@@ -1393,6 +1426,13 @@ function set_links_source_target_ids() {
 
 // AUTO function add_new_node_auto 
 function add_nodes_auto() {
+	// undo-redo
+	date = new Date();
+	var new_time = date.getTime();
+	if ((new_time - time)/1000 > 5){
+		update_undo_memory();
+		time = new_time;
+	}
 		
    	var gg_nodes = g_nodes.selectAll(".gg_nodes").data(nodes).enter().append("g")
    		.attr("id",function(d,i){
@@ -1482,7 +1522,7 @@ function add_nodes_auto() {
     			return 15;
     		}
     	})
-    	.attr("style","font:11px 'arial'")
+    	.attr("style","font-family:Arial; font-size:11px;")
     	.each(function(d){
     		if (d.name.indexOf("<br>") == -1)	{
 				d3.select("#gg_node" + d.id + " text").text(d.name);
@@ -1553,4 +1593,58 @@ function order_nodes_links(){
 		new_links_ids.push(i);
 		l.id = i;
 	});
+}
+
+// UNDO-REDO
+function update_undo_memory(){
+	undo_nodes.unshift(nodes);
+	undo_links.unshift(links);
+	if (undo_nodes.length > 10){
+		undo_nodes.splice(10,1);
+		undo_links.splice(10,1);
+	}
+}
+
+function undo(){
+	if (undo_nodes.length==0){
+		console.log('NOTHING TO UNDO.');
+	}
+	else {
+		redo_nodes.unshift(nodes);
+		redo_links.unshift(links);
+		if (redo_nodes.length > 10){
+			redo_nodes.splice(10,1);
+			redo_links.splice(10,1);
+		}
+		nodes = undo_nodes[0];
+		links = undo_links[0];
+		undo_nodes.splice(0,1);
+		undo_links.splice(0,1);
+		d3.selectAll(".gg_nodes").remove();
+		d3.selectAll(".gg_links").remove();
+		add_nodes_auto();
+		add_links();
+	}
+}
+
+function redo(){
+	if (redo_nodes.length==0){
+		console.log('NOTHING TO REDO.');
+	}
+	else {
+		undo_nodes.unshift(nodes);
+		undo_links.unshift(links);
+		if (undo_nodes.length > 10){
+			undo_nodes.splice(10,1);
+			undo_links.splice(10,1);
+		}
+		nodes = redo_nodes[0];
+		links = redo_links[0];
+		redo_nodes.splice(0,1);
+		redo_links.splice(0,1);
+		d3.selectAll(".gg_nodes").remove();
+		d3.selectAll(".gg_links").remove();
+		add_nodes_auto();
+		add_links();
+	}	
 }
