@@ -110,6 +110,7 @@ function add_links() {
 	    });
 		
 	var paths = gg_links.append("path")
+		.attr("fill","none")
 		.attr("class", "link")
 		.attr("id", function(d, i) {
     		return "link" + i;
@@ -141,7 +142,7 @@ function add_links() {
 	 	.attr("id",function(d,i){
  			return "link_value" + i;
  		})
-	 	.attr("style","font:11px 'arial'")
+	 	.attr("style","font-family:Arial; font-size:11px;")
 	 	.call(d3.behavior.drag()
    			.origin(Object).on("drag", function() {
    				if (alt_key_pressed == true) {
@@ -167,7 +168,7 @@ function add_links() {
  				d.y_sd_label = parseFloat(d.y_label + 10);
  			}
  		})
-	 	.attr("style","font:9px 'arial'")
+	 	.attr("style","font-family:Arial; font-size:9px;")
 	 	.call(d3.behavior.drag()
    			.origin(Object).on("drag", function() {
    				if (alt_key_pressed == true) {
@@ -755,7 +756,7 @@ function handles_positions(d){
 $(function(){ // Wait for the DOM to be ready.
 	$("#save_layout_button").click(function(){
 		$.post(
-			to_main_dir + "sources/php_sankey/save_layout.php",
+			"save_layout.php",
 			{p_title: document.getElementById("diagram_title").value, p_nodes: nodes},
 			function(data){
 				save_links();
@@ -766,7 +767,7 @@ $(function(){ // Wait for the DOM to be ready.
 
 function save_links() {
 	$.post(
-		to_main_dir + "sources/php_sankey/save_links.php",
+		"save_links.php",
 		{p_links: links},
 		function(data){
 			save_filtered();
@@ -776,7 +777,7 @@ function save_links() {
 
 function save_filtered() {
 	$.post(
-		to_main_dir + "sources/php_sankey/save_filtered.php",
+		"save_filtered.php",
 		{p_filtered_nodes: filtered_nodes, p_filtered_links: filtered_links},
 		function(data){
 			save_env();
@@ -788,7 +789,7 @@ function save_env() {
 	var user_scale = parseInt(document.scale_info.scale.value),
 		filter_range = parseInt(document.getElementById("filter_id").max);
 	$.post(
-		to_main_dir + "sources/php_sankey/save_env.php",
+		"save_env.php",
 		{p_scale: user_scale, p_filter: current_filter, p_filter_range: filter_range},
 		function(data){
 			document.getElementById("download_link").click();
@@ -1507,7 +1508,7 @@ function add_nodes_auto() {
     			return 15;
     		}
     	})
-    	.attr("style","font:11px 'arial'")
+    	.attr("style","font-family:Arial; font-size:11px;")
     	.each(function(d){
     		if (d.name.indexOf("<br>") == -1)	{
 				d3.select("#gg_node" + d.id + " text").text(d.name);
