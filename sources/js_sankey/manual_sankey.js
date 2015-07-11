@@ -731,7 +731,7 @@ function handles_positions(d){
 $(function(){ // Wait for the DOM to be ready.
 	$("#save_layout_button").click(function(){
 		$.post(
-			"save_layout.php",
+			to_main_dir + "sources/php_sankey/save_layout.php",
 			{p_title: document.getElementById("diagram_title").value, p_nodes: nodes},
 			function(data){
 				save_links();
@@ -742,7 +742,7 @@ $(function(){ // Wait for the DOM to be ready.
 
 function save_links() {
 	$.post(
-		"save_links.php",
+		to_main_dir + "sources/php_sankey/save_links.php",
 		{p_links: links},
 		function(data){
 			save_filtered();
@@ -752,7 +752,7 @@ function save_links() {
 
 function save_filtered() {
 	$.post(
-		"save_filtered.php",
+		to_main_dir + "sources/php_sankey/save_filtered.php",
 		{p_filtered_nodes: filtered_nodes, p_filtered_links: filtered_links},
 		function(data){
 			save_env();
@@ -764,7 +764,7 @@ function save_env() {
 	var user_scale = parseInt(document.scale_info.scale.value),
 		filter_range = parseInt(document.getElementById("filter_id").max);
 	$.post(
-		"save_env.php",
+		to_main_dir + "sources/php_sankey/save_env.php",
 		{p_scale: user_scale, p_filter: current_filter, p_filter_range: filter_range},
 		function(data){
 			document.getElementById("download_link").click();
