@@ -37,7 +37,13 @@ for($r=4; $r<$rS_max; $r++){
 				else {
 					$symbol = array('','');
 				}
-				$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+				// issue : sometimes, the x or y information is not saved in the layout (maybe because they are negative values, in the case of useless nodes for instance) and this causes an error 'x: ,' in the generated javascript file. This test will put 0 instead of nothing to prevent the error.
+				if (trim($layout_nodes[$index][$key]) != ''){
+					$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+				}
+				else {
+					$nodes.= ', ' . $key . ': ' . $symbol[0] . 0 . $symbol[1];
+				}
 			}
 		}
 		$nodes .= '},' . "\n";
@@ -91,7 +97,13 @@ for($c=4; $c<$cS_max; $c++){
 				else {
 					$symbol = array('','');
 				}
-				$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+				// issue : sometimes, the x or y information is not saved in the layout (maybe because they are negative values, in the case of useless nodes for instance) and this causes an error 'x: ,' in the generated javascript file. This test will put 0 instead of nothing to prevent the error.
+				if (trim($layout_nodes[$index][$key]) != ''){
+					$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+				}
+				else {
+					$nodes.= ', ' . $key . ': ' . $symbol[0] . 0 . $symbol[1];
+				}
 			}
 		}
 		$nodes .= '},' . "\n"; 
@@ -150,7 +162,13 @@ for($c=4; $c<$cU_max; $c++){
 					else {
 						$symbol = array('','');
 					}
-					$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+					// issue : sometimes, the x or y information is not saved in the layout (maybe because they are negative values, in the case of useless nodes for instance) and this causes an error 'x: ,' in the generated javascript file. This test will put 0 instead of nothing to prevent the error.
+					if (trim($layout_nodes[$index][$key]) != ''){
+						$nodes.= ', ' . $key . ': ' . $symbol[0] . $layout_nodes[$index][$key] . $symbol[1];
+					}
+					else {
+						$nodes.= ', ' . $key . ': ' . $symbol[0] . 0 . $symbol[1];
+					}
 				}
 			}
 			$nodes .= '},' . "\n"; 
